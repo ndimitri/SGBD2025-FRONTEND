@@ -1,9 +1,31 @@
+<!--<div class="schedule-container">-->
+<!--  <h2>Emploi du temps du Groupe {{ groupId }}</h2>-->
+<!--  <p *ngIf="!schedule">Chargement des données...</p>-->
+<!--  <mat-list *ngIf="schedule">-->
+<!--    <mat-list-item *ngFor="let course of schedule">-->
+<!--      {{ course.day }} - {{ course.time }} : {{ course.subject }}-->
+<!--    </mat-list-item>-->
+<!--  </mat-list>-->
+<!--</div>-->
+
 <div class="schedule-container">
   <h2>Emploi du temps du Groupe {{ groupId }}</h2>
+
   <p *ngIf="!schedule">Chargement des données...</p>
-  <mat-list *ngIf="schedule">
-    <mat-list-item *ngFor="let course of schedule">
-      {{ course.day }} - {{ course.time }} : {{ course.subject }}
-    </mat-list-item>
-  </mat-list>
+
+  <mat-accordion *ngIf="schedule" multi>
+    <mat-expansion-panel *ngFor="let course of schedule">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          📅 {{ course.day }} - {{ course.time }} : {{ course.subject }}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div class="course-details">
+        <p><mat-icon>schedule</mat-icon> <strong>Heure:</strong> {{ course.time }}</p>
+        <p><mat-icon>class</mat-icon> <strong>Salle:</strong> {{ course.class }}</p>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
 </div>
+

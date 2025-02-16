@@ -5,6 +5,19 @@ import { StudentsRoutingModule } from './students-routing.module';
 import { ScheduleComponent } from './pages/schedule/schedule.component';
 import { StudentsHomeComponent } from './pages/students-home/students-home.component';
 import {MatList, MatListItem} from '@angular/material/list';
+import {MatFormField, MatFormFieldModule, MatLabel} from '@angular/material/form-field';
+import {MatOption, MatSelect, MatSelectModule} from '@angular/material/select';
+import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatOptionModule} from '@angular/material/core';
+import {MatInputModule} from '@angular/material/input';
+import {
+  MatAccordion,
+  MatExpansionModule,
+  MatExpansionPanel,
+  MatExpansionPanelTitle
+} from '@angular/material/expansion';
+import {MatIcon} from '@angular/material/icon';
 
 
 @NgModule({
@@ -16,7 +29,15 @@ import {MatList, MatListItem} from '@angular/material/list';
     CommonModule,
     StudentsRoutingModule,
     MatList,
-    MatListItem
+    MatListItem,
+    MatFormField,
+    MatSelect,
+    MatOption,
+    MatLabel,
+    MatAccordion,
+    MatExpansionModule,
+    // MatExpansionPanelTitle,
+    MatIcon,
   ]
 })
 export class StudentsModule { }
