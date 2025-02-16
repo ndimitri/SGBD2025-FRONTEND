@@ -1,0 +1,9 @@
+<div class="schedule-container">
+  <h2>Emploi du temps du Groupe {{ groupId }}</h2>
+  <p *ngIf="!schedule">Chargement des données...</p>
+  <mat-list *ngIf="schedule">
+    <mat-list-item *ngFor="let course of schedule">
+      {{ course.day }} - {{ course.time }} : {{ course.subject }}
+    </mat-list-item>
+  </mat-list>
+</div>

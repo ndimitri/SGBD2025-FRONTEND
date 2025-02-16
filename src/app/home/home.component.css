@@ -1,0 +1,41 @@
+:host{
+  .home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    background-color: #9dbdd4;
+  }
+
+  .profile-selection {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .profile-card {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    border-radius: 50%;
+    text-align: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    background: white;
+  }
+
+  .profile-card:hover {
+    transform: scale(1.1);
+  }
+
+  .profile-icon {
+    transform: scale(4); /* Augmente la taille de 50% */
+    color: #1976d2; /* Bleu Material */
+    margin-bottom: 10px;
+  }
+}

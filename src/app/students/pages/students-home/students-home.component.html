@@ -1,0 +1,8 @@
+<div class="group-selection">
+  <h2>Choisissez votre groupe</h2>
+  <mat-list>
+    <mat-list-item *ngFor="let group of groups" (click)="selectGroup(group.id)">
+      {{ group.name }}
+    </mat-list-item>
+  </mat-list>
+</div>

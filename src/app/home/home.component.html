@@ -1,0 +1,23 @@
+
+
+<div class="home-container">
+  <h1>Choisissez votre profil</h1>
+
+  <div class="profile-selection">
+    <!-- Admin -->
+    <mat-card class="profile-card" (click)="chooseRole('admin')">
+      <mat-card-content>
+        <mat-icon class="profile-icon">admin_panel_settings</mat-icon>
+        <h2>Admin</h2>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Étudiant -->
+    <mat-card class="profile-card" (click)="chooseRole('students')">
+      <mat-card-content>
+        <mat-icon class="profile-icon">school</mat-icon>
+        <h2>Groupe d'étudiants</h2>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

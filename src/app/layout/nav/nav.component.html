@@ -1,0 +1,18 @@
+
+
+    <mat-toolbar color="primary">
+      <button mat-button [routerLink]="['/admin/dashboard']">
+        <mat-icon>home</mat-icon> Dashboard
+      </button>
+      <button mat-button [routerLink]="['/admin/generate-schedule']">
+        <mat-icon>schedule</mat-icon> Générer Horaires
+      </button>
+      <button mat-button [routerLink]="['/admin/manage-schedules']">
+        <mat-icon>edit</mat-icon> Modifier Horaires
+      </button>
+      <button mat-button [routerLink]="['/admin/manage-groups']">
+        <mat-icon>group</mat-icon> Gérer Groupes
+      </button>
+      <span class="example-spacer"></span>
+      <button mat-button (click)="logout()">Déconnexion</button>
+    </mat-toolbar>

@@ -1,0 +1,9 @@
+:host{
+  .schedule-container {
+    text-align: center;
+    padding: 20px;
+  }
+  mat-list-item {
+    font-size: 18px;
+  }
+}
