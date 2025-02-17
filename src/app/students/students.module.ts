@@ -18,6 +18,7 @@ import {
   MatExpansionPanelTitle
 } from '@angular/material/expansion';
 import {MatIcon} from '@angular/material/icon';
+import {HttpClient, HttpClientModule, provideHttpClient} from '@angular/common/http';
 
 
 @NgModule({
@@ -38,6 +39,9 @@ import {MatIcon} from '@angular/material/icon';
     MatExpansionModule,
     // MatExpansionPanelTitle,
     MatIcon,
-  ]
+  ],
+  providers: [
+    provideHttpClient(),
+  ],
 })
 export class StudentsModule { }

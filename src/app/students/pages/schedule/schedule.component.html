@@ -9,21 +9,25 @@
 <!--</div>-->
 
 <div class="schedule-container">
-  <h2>Emploi du temps du Groupe {{ groupId }}</h2>
+  <h2>Emploi du temps du {{ schedule ? schedule[0].group.name  : ' '}} </h2>
+  @if(schedule) {
+    <h2>{{schedule[0].startTime | date : 'dd/MM/YY'}}</h2>
+  }
+
 
   <p *ngIf="!schedule">Chargement des données...</p>
 
   <mat-accordion *ngIf="schedule" multi>
-    <mat-expansion-panel *ngFor="let course of schedule">
+    <mat-expansion-panel *ngFor="let scheduledCourse of schedule">
       <mat-expansion-panel-header>
         <mat-panel-title>
-          📅 {{ course.day }} - {{ course.time }} : {{ course.subject }}
+          📅 {{ scheduledCourse.course.name }} - {{ scheduledCourse.course.professor }} : {{ scheduledCourse.startTime | date:'HH:mm' }} - {{scheduledCourse.endTime | date: 'HH:mm'}}
         </mat-panel-title>
       </mat-expansion-panel-header>
 
       <div class="course-details">
-        <p><mat-icon>schedule</mat-icon> <strong>Heure:</strong> {{ course.time }}</p>
-        <p><mat-icon>class</mat-icon> <strong>Salle:</strong> {{ course.class }}</p>
+        <p><mat-icon>schedule</mat-icon> <strong>Class:</strong> {{scheduledCourse.classroom.matricule}} ({{scheduledCourse.classroom.capacity}} max)</p>
+        <p><mat-icon>class</mat-icon> <strong>Site:</strong> {{ scheduledCourse.site.name }} ( {{scheduledCourse.site.university.name}})</p>
       </div>
     </mat-expansion-panel>
   </mat-accordion>

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import {Router} from '@angular/router';
 import {RoleService} from '../../../services/role.service';
+import {Group} from '../../../models/models';
+import {GroupsService} from '../../services/groups.service';
 
 @Component({
   selector: 'app-students-home',
@@ -10,13 +12,21 @@ import {RoleService} from '../../../services/role.service';
 })
 export class StudentsHomeComponent {
 
-  groups = [
-    { id: '1', name: 'Groupe A' },
-    { id: '2', name: 'Groupe B' },
-    { id: '3', name: 'Groupe C' }
-  ];
+  groups! : Group[];
 
-  constructor(private router: Router, private roleService: RoleService) {
+  constructor(private router: Router, private roleService: RoleService, private groupService: GroupsService) {
+    this.getGroups();
+  }
+
+  getGroups() {
+    this.groupService.getGroup().subscribe(
+      (data) => {
+        this.groups = data;
+      },
+      (error) => {
+        console.error('Erreur lors du chargement des groupes', error);
+      }
+    );
   }
 
   selectGroup(groupId: string) {

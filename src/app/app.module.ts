@@ -13,6 +13,7 @@ import {MatIcon} from '@angular/material/icon';
 import {MatButton} from '@angular/material/button';
 import { StudentNavComponent } from './layout/student-nav/student-nav.component';
 import {MatCard, MatCardContent} from '@angular/material/card';
+import {provideHttpClient} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import {MatCard, MatCardContent} from '@angular/material/card';
     MatCardContent
   ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    provideHttpClient(),
   ],
   bootstrap: [AppComponent]
 })

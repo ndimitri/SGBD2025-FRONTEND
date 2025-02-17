@@ -1,13 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, computed, signal, effect, runInInjectionContext} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import { ScheduledCourse} from '../../../models/models';
+import {ScheduledCourseService} from '../../services/scheduled-course.service';
 
-
-interface Course {
-  day: string;
-  time: string;
-  subject: string;
-  class: string;
-}
 
 @Component({
   selector: 'app-schedule',
@@ -15,28 +10,50 @@ interface Course {
   templateUrl: './schedule.component.html',
   styleUrl: './schedule.component.css'
 })
-export class ScheduleComponent implements OnInit{
+export class ScheduleComponent implements OnInit {
 
-  groupId: string | null = null;
-  schedule: Course[] | null = null;
-  selectedCourse: Course | null = null;
+  groupId!: string | null;
+  schedule! : ScheduledCourse[];
+  selectedCourse: ScheduledCourse | null = null;
 
-  constructor(private route: ActivatedRoute) {}
+
+  constructor(private route: ActivatedRoute, private scheduleService: ScheduledCourseService) {
+  }
 
   ngOnInit() {
-    this.groupId = this.route.snapshot.paramMap.get('groupId'); // Récupère l’ID du groupe depuis l'URL
-    this.loadSchedule();
+    this.groupId = this.route.snapshot.paramMap.get('groupId');
+    if (this.groupId) {
+      this.loadSchedule(this.groupId);
+    }
+
   }
 
-  loadSchedule() {
-    // Simuler une récupération d'emploi du temps (remplace avec un appel API plus tard)
-    const mockSchedules: { [key: string]: Course[] } = {
-      '1': [{ day: 'Lundi', time: '08:00', subject: 'Maths', class: 'Salle 101' },{ day: 'Mercredi', time: '14:30', subject: 'Chimie', class: 'Salle 50' }],
-      '2': [{ day: 'Mardi', time: '10:00', subject: 'Physique', class: 'Salle 102' },{ day: 'Mercredi', time: '14:50', subject: 'Musique', class: 'Salle 50' }],
-      '3': [{ day: 'Mercredi', time: '14:00', subject: 'Histoire', class: 'Salle 103' }]
-    };
+  loadSchedule(groupId: string) {
+    this.scheduleService.getScheduleByGroup(groupId).subscribe(
+      (data) => {
+        this.schedule = data;
+      },
+      (error) => {
+        console.error('Erreur lors du chargement de l’emploi du temps', error);
+      }
+    );
 
-    this.schedule = mockSchedules[this.groupId!] || null;
   }
+
+
+
+
+
+
+  // loadSchedule(groupId: string) {
+  //   this.scheduleService.getScheduleByGroup(groupId).subscribe(
+  //     (data) => {
+  //       this.schedule = data;
+  //     },
+  //     (error) => {
+  //       console.error('Erreur lors du chargement de l’emploi du temps', error);
+  //     }
+  //   );
+  // }
 
 }
