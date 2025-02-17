@@ -7,10 +7,7 @@ import { StudentsHomeComponent } from './pages/students-home/students-home.compo
 import {MatList, MatListItem} from '@angular/material/list';
 import {MatFormField, MatFormFieldModule, MatLabel} from '@angular/material/form-field';
 import {MatOption, MatSelect, MatSelectModule} from '@angular/material/select';
-import {BrowserModule} from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatOptionModule} from '@angular/material/core';
-import {MatInputModule} from '@angular/material/input';
+
 import {
   MatAccordion,
   MatExpansionModule,
@@ -19,6 +16,8 @@ import {
 } from '@angular/material/expansion';
 import {MatIcon} from '@angular/material/icon';
 import {HttpClient, HttpClientModule, provideHttpClient} from '@angular/common/http';
+
+
 
 
 @NgModule({
@@ -37,11 +36,11 @@ import {HttpClient, HttpClientModule, provideHttpClient} from '@angular/common/h
     MatLabel,
     MatAccordion,
     MatExpansionModule,
-    // MatExpansionPanelTitle,
     MatIcon,
   ],
   providers: [
     provideHttpClient(),
+
   ],
 })
 export class StudentsModule { }

@@ -1,18 +1,10 @@
 :host {
-  /*.schedule-container {*/
-  /*  text-align: center;*/
-  /*  padding: 20px;*/
-  /*}*/
-  /*mat-list-item {*/
-  /*  font-size: 18px;*/
-  /*}*/
 
   .schedule-container {
     text-align: center;
     padding: 20px;
     background-color: #754E1A;
     border-radius: 12px;
-    /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);*/
     box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
     max-width: 600px;
     margin: 8vh auto auto;
