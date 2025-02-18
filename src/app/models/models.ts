@@ -30,10 +30,10 @@ export interface Group {
   baseSite: Site;
 }
 
-export interface ScheduledCourse {
+export interface TimeSlot {
   id: string;
   course: Course;
-  group: Group;
+  group: Group[];
   classroom: Classroom;
   site: Site;
   startTime: string;

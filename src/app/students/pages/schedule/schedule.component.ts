@@ -1,6 +1,6 @@
 import {Component, OnInit,} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import { ScheduledCourse} from '../../../models/models';
+import { TimeSlot} from '../../../models/models';
 import {ScheduledCourseService} from '../../services/scheduled-course.service';
 
 import { CalendarOptions } from '@fullcalendar/core';
@@ -32,8 +32,8 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 export class ScheduleComponent implements OnInit {
 
   groupId!: string | null;
-  schedule! : ScheduledCourse[];
-  selectedCourse: ScheduledCourse | any = null;
+  schedule! : TimeSlot[];
+  selectedCourse: TimeSlot | any = null;
 
   isSelectedCourseVisible = false;
 
@@ -41,7 +41,7 @@ export class ScheduleComponent implements OnInit {
     plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
     initialView: 'timeGridWeek',
     slotMinTime: '08:00:00',
-    slotMaxTime: '21:00:00',
+    slotMaxTime: '23:00:00',
     allDaySlot: false,
     locale: 'fr',
     slotDuration: '00:30:00', // Garde des créneaux lisibles
