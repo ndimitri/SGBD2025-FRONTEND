@@ -1,29 +1,19 @@
 
-<div class="schedule-container">
-  <h2>Emploi du temps du {{ schedule ? schedule[0].group.name  : ' '}} </h2>
-  @if(schedule) {
-    <h2>{{schedule[0].startTime | date : 'dd/MM/YY'}}</h2>
-  }
+<div class="schedule-page">
+  <!-- Bloc du calendrier -->
+  <div class="calendar-container">
+    <h2>Emploi du temps du {{ schedule ? schedule[0].group.name : ' ' }}</h2>
+    <p *ngIf="!schedule">Chargement des données...</p>
+    <full-calendar [options]="calendarOptions"></full-calendar>
+  </div>
 
-
-  <p *ngIf="!schedule">Chargement des données...</p>
-
-  <mat-accordion *ngIf="schedule" multi>
-    <mat-expansion-panel hideToggle *ngFor="let scheduledCourse of schedule">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          📅 {{ scheduledCourse.startTime | date:'HH:mm' }} - {{scheduledCourse.endTime | date: 'HH:mm'}}
-        </mat-panel-title>
-        <mat-panel-description>
-          {{ scheduledCourse.course.name }} - {{ scheduledCourse.course.professor }}
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-
-      <div class="course-details">
-        <p><mat-icon>schedule</mat-icon> <strong>Class:</strong> {{scheduledCourse.classroom.matricule}} ({{scheduledCourse.classroom.capacity}} max)</p>
-        <p><mat-icon>class</mat-icon> <strong>Site:</strong> {{ scheduledCourse.site.name }} ({{scheduledCourse.site.university.name}})</p>
-      </div>
-    </mat-expansion-panel>
-  </mat-accordion>
+  <!-- Bloc des détails du cours -->
+  <div class="details-container" *ngIf="selectedCourse" [@slideInOut]="isSelectedCourseVisible ? 'in' : 'out'">
+    <h3>Détails du cours</h3>
+    <p><strong>Cours :</strong> {{ selectedCourse.course.name }}</p>
+    <p><strong>Professeur :</strong> {{ selectedCourse.course.professor }}</p>
+    <p><strong>Salle :</strong> {{ selectedCourse.classroom.matricule }}</p>
+    <p><strong>Site :</strong> {{ selectedCourse.site.name }}</p>
+    <p><strong>Time :</strong> {{ selectedCourse.startTime | date:'HH:mm'}}</p>
+  </div>
 </div>
-

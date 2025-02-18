@@ -1,50 +1,59 @@
 :host {
+  --primary-color: #2196F3; /* Bleu principal */
+  --secondary-color: #E3F2FD; /* Bleu très clair */
+  --accent-color: #1565C0; /* Bleu foncé */
+  --text-color: #333;
+  --background-color: #F5F7FA;
 
-  .schedule-container {
-    text-align: center;
-    padding: 20px;
-    background-color: #754E1A;
-    border-radius: 12px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
-    max-width: 600px;
-    margin: 8vh auto auto;
+
+  /* Augmenter la hauteur des cellules */
+  .fc-timegrid-slot {
+    height: 50px !important; /* Ajuste selon ton besoin (par défaut ~30px) */
   }
 
-  h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-
-  mat-expansion-panel {
-    background-color: #CBA35C;
-    border-radius: 8px;
-    margin-bottom: 10px;
-  }
-
-  mat-expansion-panel-header {
-    font-size: 18px;
+  /* Agrandir la police des événements */
+  .fc-event-title {
+    font-size: 16px !important;
     font-weight: bold;
-    /*color: #3f51b5;*/
   }
 
-  .course-details {
-    padding: 10px;
-    text-align: left;
-    background-color: #F8E1B7;
-    border-radius: 30px;
+  /* Espacer un peu les événements */
+  .fc-event {
+    padding: 6px;
+    border-radius: 6px;
   }
 
-  .course-details p {
-    display: flex;
-    align-items: center;
+
+
+  .schedule-page {
+    display: grid;
+    grid-template-columns: 4.5fr 1fr; /* 75% calendrier, 25% détails */
+    gap: 20px;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+  }
+
+  /* Bloc du calendrier */
+  .calendar-container {
+    background: white;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Bloc des détails */
+  .details-container {
+    background: var(--secondary-color);
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .details-container p {
     font-size: 16px;
-    margin: 5px 0;
-    color: #444;
-    gap: 10px;
-  }
-
-  mat-icon {
-    /*margin-right: 8px;*/
-    color: #3f51b5;
+    color: var(--text-color);
   }
 }
+
+
