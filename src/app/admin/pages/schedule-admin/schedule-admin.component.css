@@ -1,0 +1,59 @@
+:host {
+  --primary-color: #2196F3; /* Bleu principal */
+  --secondary-color: #E3F2FD; /* Bleu très clair */
+  --accent-color: #1565C0; /* Bleu foncé */
+  --text-color: #333;
+  --background-color: #F5F7FA;
+
+
+  /* Augmenter la hauteur des cellules */
+  .fc-timegrid-slot {
+    height: 50px !important; /* Ajuste selon ton besoin (par défaut ~30px) */
+  }
+
+  /* Agrandir la police des événements */
+  .fc-event-title {
+    font-size: 16px !important;
+    font-weight: bold;
+  }
+
+  /* Espacer un peu les événements */
+  .fc-event {
+    padding: 6px;
+    border-radius: 6px;
+  }
+
+
+
+  .schedule-page {
+    display: grid;
+    grid-template-columns: 4.5fr 1fr; /* 75% calendrier, 25% détails */
+    gap: 20px;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+  }
+
+  /* Bloc du calendrier */
+  .calendar-container {
+    background: white;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Bloc des détails */
+  .details-container {
+    background: var(--secondary-color);
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .details-container p {
+    font-size: 16px;
+    color: var(--text-color);
+  }
+}
+
+

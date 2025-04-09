@@ -1,0 +1,59 @@
+<div class="container">
+  <h2>Créer un nouveau cours</h2>
+<!--  <form [formGroup]="courseForm" (ngSubmit)="submitForm()">-->
+<!--    <mat-form-field appearance="outline" class="full-width">-->
+<!--      <mat-label>Nom du cours</mat-label>-->
+<!--      <input matInput formControlName="name" required />-->
+<!--    </mat-form-field>-->
+
+<!--    <mat-form-field appearance="outline" class="full-width">-->
+<!--      <mat-label>Heures par semaine</mat-label>-->
+<!--      <input matInput type="number" formControlName="hoursPerWeek" required min="1" max="20" />-->
+<!--    </mat-form-field>-->
+
+<!--    <mat-form-field appearance="outline" class="full-width">-->
+<!--      <mat-label>Site universitaire</mat-label>-->
+<!--      <mat-select formControlName="siteId" required>-->
+<!--        <mat-option *ngFor="let site of sites" [value]="site.id">{{ site.name }}</mat-option>-->
+<!--      </mat-select>-->
+<!--    </mat-form-field>-->
+
+<!--    <mat-form-field appearance="outline" class="full-width">-->
+<!--      <mat-label>Nom du professeur</mat-label>-->
+<!--      <input matInput formControlName="professor" required />-->
+<!--    </mat-form-field>-->
+
+<!--    <button mat-raised-button color="primary" type="submit" [disabled]="courseForm.invalid || isSubmitting">-->
+<!--      {{ isSubmitting ? 'Création...' : 'Créer le cours' }}-->
+<!--    </button>-->
+<!--  </form>-->
+
+  <form [formGroup]="courseForm" (ngSubmit)="submitForm()">
+    <mat-form-field appearance="fill">
+      <mat-label>Nom du cours</mat-label>
+      <input matInput formControlName="name" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Professeur</mat-label>
+      <input matInput formControlName="professor" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Site universitaire</mat-label>
+      <mat-select formControlName="siteId" required>
+        <mat-option *ngFor="let site of sites" [value]="site.id">{{ site.name }} ({{site.university.name}})</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre d'heures par semaine</mat-label>
+      <input matInput type="number" formControlName="weeklyHours" required>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="courseForm.invalid">Créer</button>
+  </form>
+
+
+</div>
+

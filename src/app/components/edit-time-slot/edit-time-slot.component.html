@@ -1,0 +1,38 @@
+<h2 mat-dialog-title>Modifier le créneau</h2>
+
+<form [formGroup]="editForm">
+  <mat-form-field appearance="outline">
+    <label>Cours</label>
+    <input matInput formControlName="courseId">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <label>Professeur</label>
+    <input matInput formControlName="professor">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <label>Salle</label>
+    <input matInput formControlName="classroomId">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <label>Site</label>
+    <input matInput formControlName="siteId">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <label>Heure de début</label>
+    <input matInput type="datetime-local" formControlName="startTime">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <label>Heure de fin</label>
+    <input matInput type="datetime-local" formControlName="endTime">
+  </mat-form-field>
+</form>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Annuler</button>
+  <button mat-button color="primary" (click)="onSave()" [disabled]="editForm.invalid">Sauvegarder</button>
+</mat-dialog-actions>
