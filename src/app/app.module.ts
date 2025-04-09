@@ -14,6 +14,12 @@ import {MatButton} from '@angular/material/button';
 import { StudentNavComponent } from './layout/student-nav/student-nav.component';
 import {MatCard, MatCardContent} from '@angular/material/card';
 import {provideHttpClient} from '@angular/common/http';
+import { EditTimeSlotComponent } from './components/edit-time-slot/edit-time-slot.component';
+import {MatDialogActions, MatDialogTitle} from "@angular/material/dialog";
+import {ReactiveFormsModule} from '@angular/forms';
+import {MatFormField} from '@angular/material/form-field';
+import {MatInput} from '@angular/material/input';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +28,9 @@ import {provideHttpClient} from '@angular/common/http';
     NavComponent,
     FooterComponent,
     HomeComponent,
-    StudentNavComponent
+    StudentNavComponent,
+    EditTimeSlotComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -31,7 +39,12 @@ import {provideHttpClient} from '@angular/common/http';
     MatIcon,
     MatButton,
     MatCard,
-    MatCardContent
+    MatCardContent,
+    MatDialogTitle,
+    ReactiveFormsModule,
+    MatFormField,
+    MatInput,
+    MatDialogActions
   ],
   providers: [
     provideAnimationsAsync(),
