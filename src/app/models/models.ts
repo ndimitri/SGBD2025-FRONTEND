@@ -34,7 +34,7 @@ export interface Group {
 export interface TimeSlot {
   id: string;
   course: Course;
-  group: Group[];
+  groups: Group[];
   classroom: Classroom;
   site: Site;
   startTime: string;

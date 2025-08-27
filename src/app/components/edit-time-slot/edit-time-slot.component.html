@@ -1,24 +1,33 @@
 <h2 mat-dialog-title>Modifier le créneau</h2>
 
 <form [formGroup]="editForm">
+<!--  Cours-->
   <mat-form-field appearance="outline">
     <label>Cours</label>
-    <input matInput formControlName="courseId">
+<!--    <input matInput formControlName="courseId">-->
+    <input matInput [value]="data.course.name" disabled>
   </mat-form-field>
 
   <mat-form-field appearance="outline">
     <label>Professeur</label>
-    <input matInput formControlName="professor">
+<!--    <input matInput formControlName="professor">-->
+    <input matInput [value]="data.course.professor" disabled>
   </mat-form-field>
 
+  <!-- Salle (select modifiable) -->
   <mat-form-field appearance="outline">
-    <label>Salle</label>
-    <input matInput formControlName="classroomId">
+    <mat-label>Salle</mat-label>
+    <mat-select formControlName="classroomId" (selectionChange)="onClassroomChange($event.value)">
+      <mat-option *ngFor="let room of classrooms" [value]="room.id">
+        {{ room.matricule }} ({{ room.site.name }})
+      </mat-option>
+    </mat-select>
   </mat-form-field>
 
+  <!-- Site (readonly, auto lié à la salle) -->
   <mat-form-field appearance="outline">
-    <label>Site</label>
-    <input matInput formControlName="siteId">
+    <mat-label>Site</mat-label>
+    <input matInput [value]="selectedSite?.name" disabled>
   </mat-form-field>
 
   <mat-form-field appearance="outline">

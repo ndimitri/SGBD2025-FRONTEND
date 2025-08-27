@@ -1,11 +1,12 @@
 import {Component, Inject} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {TimeSlot} from '../../models/models';
+import {Classroom, Course, Site, TimeSlot} from '../../models/models';
 import { HttpClient } from '@angular/common/http';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {ScheduledCourseService} from '../../students/services/scheduled-course.service';
 import {TimeSlotUpdateForm} from '../../models/forms';
+import {ClassroomService} from '../../admin/services/classroom.service';
 
 @Component({
   selector: 'app-edit-time-slot',
@@ -15,8 +16,12 @@ import {TimeSlotUpdateForm} from '../../models/forms';
 })
 export class EditTimeSlotComponent {
 
-  editForm: FormGroup;
+  editForm!: FormGroup;
   isSubmitting = false; // Pour désactiver le bouton "Sauvegarder" pendant la requête
+
+  classrooms : Classroom[] = [];
+  selectedSite : Site | null = null;
+
 
 
   constructor(
@@ -24,38 +29,56 @@ export class EditTimeSlotComponent {
     public dialogRef: MatDialogRef<EditTimeSlotComponent>,
     private snackBar: MatSnackBar,
     private scheduledCourseService: ScheduledCourseService,
+    private classroomService : ClassroomService,
+
     @Inject(MAT_DIALOG_DATA) public data: TimeSlot
   ) {
+
+  }
+
+  ngOnInit() {
+    this.classroomService.getClassrooms().subscribe({
+      next: (res) => (this.classrooms = res),
+      error: (err) => console.error(err)
+    });
+
+
     this.editForm = this.fb.group({
-      courseId: [data.course.id, Validators.required],
-      professor: [data.course.professor, Validators.required],
-      classroomId: [data.classroom.id, Validators.required],
-      siteId: [data.site.id, Validators.required],
-      startTime: [data.startTime, Validators.required],
-      endTime: [data.endTime, Validators.required]
+      // courseId: [data.course.id, Validators.required],
+      // professor: [data.course.professor],
+      classroomId: [this.data.classroom.id, Validators.required],
+      // siteId: [data.site.id, Validators.required],
+      startTime: [this.data.startTime, Validators.required],
+      endTime: [this.data.endTime, Validators.required]
     });
   }
+
+  onClassroomChange(classroomId : string) {
+    const selectedClassroom = this.classrooms.find(c => c.id === classroomId);
+    this.selectedSite = selectedClassroom?.site || null;
+  }
+
 
   onSave() {
     if (this.editForm.invalid) return;
 
     this.isSubmitting = true;
-    const updatedSlot = { ...this.data, ...this.editForm.value };
+    // const updatedSlot = { ...this.data, ...this.editForm.value };
 
-    const slot : TimeSlotUpdateForm = {
-      id: updatedSlot.id, // Id du créneau
-      startTime: updatedSlot.startTime,
-      endTime: updatedSlot.endTime,
-      professor: updatedSlot.professor,
-      classroomId: updatedSlot.classroomId,
-      courseId: updatedSlot.courseId,
-      studentGroupId: updatedSlot.studentGroupId
+    const updatedSlot : TimeSlotUpdateForm = {
+      id: this.data.id, // Id du créneau
+      startTime: this.editForm.value.startTime,
+      endTime: this.editForm.value.endTime,
+      // professor: this.data.course.professor,
+      classroomId: this.editForm.value.classroomId,
+      courseId: this.data.course.id,
+      studentGroupsIds: this.data.groups.map(g => g.id)
     }
 
-    console.log('Updated Slot:', slot);
+    console.log('Updated Slot:', updatedSlot);
 
     // Si dispo, on update le créneau
-    this.scheduledCourseService.updateTimeSlot(slot).subscribe({
+    this.scheduledCourseService.updateTimeSlot(updatedSlot).subscribe({
       next: () => {
         this.snackBar.open('Créneau mis à jour avec succès !', 'Fermer', { duration: 3000 });
         this.dialogRef.close(updatedSlot);

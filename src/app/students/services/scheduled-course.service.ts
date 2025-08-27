@@ -18,7 +18,7 @@ export class ScheduledCourseService {
   }
 
   updateTimeSlot(slot: TimeSlotUpdateForm) {
-    return this.http.put(`${this.apiUrl}`, slot);
+    return this.http.put(`${this.apiUrl}${slot.id}`, slot);
   }
 
 

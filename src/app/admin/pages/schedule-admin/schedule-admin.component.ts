@@ -66,6 +66,22 @@ export class ScheduleAdminComponent implements OnInit{
       data: timeSlot
     });
 
+    dialogRef.afterClosed().subscribe((updatedSlot: TimeSlot) => {
+      if (updatedSlot) {
+        const idx = this.schedule.findIndex(s => s.id === updatedSlot.id);
+        if (idx !== -1) {
+          // On retrouve l'objet classroom complet à partir de l'id si besoin
+          const updatedClassroom = this.classrooms.find(c => c.id === updatedSlot.classroom?.id) || updatedSlot.classroom;
+          this.schedule[idx] = {
+            ...this.schedule[idx],
+            ...updatedSlot,
+            classroom: updatedClassroom
+          };
+          this.updateCalendarEvents();
+        }
+      }
+    });
+
   }
 
 
@@ -98,6 +114,8 @@ export class ScheduleAdminComponent implements OnInit{
       }
     })))
   };
+
+
 
 
   handleEventClick(eventClickInfo: any) {

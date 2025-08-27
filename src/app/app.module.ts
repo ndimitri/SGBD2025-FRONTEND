@@ -17,8 +17,9 @@ import {provideHttpClient} from '@angular/common/http';
 import { EditTimeSlotComponent } from './components/edit-time-slot/edit-time-slot.component';
 import {MatDialogActions, MatDialogTitle} from "@angular/material/dialog";
 import {ReactiveFormsModule} from '@angular/forms';
-import {MatFormField} from '@angular/material/form-field';
+import {MatFormField, MatLabel} from '@angular/material/form-field';
 import {MatInput} from '@angular/material/input';
+import {MatOption, MatSelect} from '@angular/material/select';
 
 
 @NgModule({
@@ -44,7 +45,10 @@ import {MatInput} from '@angular/material/input';
     ReactiveFormsModule,
     MatFormField,
     MatInput,
-    MatDialogActions
+    MatDialogActions,
+    MatLabel,
+    MatSelect,
+    MatOption
   ],
   providers: [
     provideAnimationsAsync(),

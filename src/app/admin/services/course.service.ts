@@ -21,4 +21,8 @@ export class CourseService {
   getSites(): Observable<Site[]> {
     return this.http.get<Site[]>(this.sitesUrl);
   }
+
+  getCourses(): Observable<Course[]> {
+    return this.http.get<Course[]>(this.apiUrl);
+  }
 }
