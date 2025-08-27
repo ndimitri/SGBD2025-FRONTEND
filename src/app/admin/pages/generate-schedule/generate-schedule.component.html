@@ -1,4 +1,4 @@
-<p>generate-schedule works!</p>
+
 <mat-form-field>
   <mat-label>Groupe</mat-label>
   <mat-select [(value)]="selectedGroupId">
@@ -7,7 +7,7 @@
     </mat-option>
   </mat-select>
 </mat-form-field>
-<button mat-raised-button color="primary" (click)="generateSchedule()" [disabled]="!selectedGroupId || loading">
+<button class="generateButton" mat-raised-button color="primary" (click)="generateSchedule()" [disabled]="!selectedGroupId || loading">
   Générer l’horaire
 </button>
 <div *ngIf="message">{{ message }}</div>

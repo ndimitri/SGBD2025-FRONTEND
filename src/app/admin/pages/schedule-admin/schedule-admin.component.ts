@@ -69,19 +69,20 @@ export class ScheduleAdminComponent implements OnInit{
     dialogRef.afterClosed().subscribe((updatedSlot: TimeSlot) => {
       if (updatedSlot) {
         const idx = this.schedule.findIndex(s => s.id === updatedSlot.id);
-        if (idx !== -1) {
-          // On retrouve l'objet classroom complet à partir de l'id si besoin
-          const updatedClassroom = this.classrooms.find(c => c.id === updatedSlot.classroom?.id) || updatedSlot.classroom;
+
+        this.scheduleService.getTimeSlotById(updatedSlot.id).subscribe((newSlot) => {
+
           this.schedule[idx] = {
             ...this.schedule[idx],
-            ...updatedSlot,
-            classroom: updatedClassroom
+            ...newSlot,
           };
           this.updateCalendarEvents();
-        }
+          this.selectedCourse = newSlot
+
+        });
+
       }
     });
-
   }
 
 
@@ -95,7 +96,6 @@ export class ScheduleAdminComponent implements OnInit{
         console.error('Erreur lors du chargement de l’emploi du temps', error);
       }
     );
-
   }
 
   updateCalendarEvents() {
@@ -115,14 +115,11 @@ export class ScheduleAdminComponent implements OnInit{
     })))
   };
 
-
-
-
   handleEventClick(eventClickInfo: any) {
     const selected = this.schedule.find((course) => course.id === eventClickInfo.event.id);
 
     if(selected){
-      this.selectedCourse = selected
+      this.selectedCourse = selected;
     }
 
   }

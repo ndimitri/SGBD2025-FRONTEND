@@ -7,11 +7,11 @@
   </div>
 
   <!-- Bloc des détails du cours -->
-  <div class="details-container" *ngIf="selectedCourse" [@slideInOut]="isSelectedCourseVisible ? 'in' : 'out'">
+  <div class="details-container" *ngIf="selectedCourse" >
     <h3>Détails du cours</h3>
     <p><strong>Cours :</strong> {{ selectedCourse.course.name }}</p>
     <p><strong>Professeur :</strong> {{ selectedCourse.course.professor }}</p>
-    <p><strong>Salle :</strong> {{ selectedCourse.classroom.matricule }}</p>
+    <p><strong>Salle :</strong> {{ selectedCourse.classroom?.matricule}}</p>
     <p><strong>Site :</strong> {{ selectedCourse.site.name }} ({{selectedCourse.site.university.name}})</p>
     <p><strong>Group :</strong>
       @for (group of selectedCourse.groups; track group.id) {

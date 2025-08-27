@@ -20,6 +20,10 @@ export class ScheduledCourseService {
     return this.http.put(`${this.apiUrl}${slot.id}`, slot);
   }
 
+  getTimeSlotById(id: string): Observable<TimeSlot> {
+    return this.http.get<TimeSlot>(`${this.apiUrl}${id}`);
+  }
+
 
 
 

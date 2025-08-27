@@ -15,19 +15,6 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
   standalone: false,
   templateUrl: './schedule.component.html',
   styleUrl: './schedule.component.css',
-  // animations: [
-  //   trigger('slideInOut', [
-  //     state('in', style({
-  //       transform: 'translateX(0)', // Position initiale quand l'élément est visible
-  //     })),
-  //     state('out', style({
-  //       transform: 'translateX(100%)', // Position hors de la vue
-  //     })),
-  //     transition('in <=> out', [
-  //       animate('300ms ease-in-out')
-  //     ])
-  //   ])
-  // ]
 })
 export class ScheduleComponent implements OnInit {
 
@@ -81,7 +68,6 @@ export class ScheduleComponent implements OnInit {
         console.error('Erreur lors du chargement de l’emploi du temps', error);
       }
     );
-
   }
 
   updateCalendarEvents() {

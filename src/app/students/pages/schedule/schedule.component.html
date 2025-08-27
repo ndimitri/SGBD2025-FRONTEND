@@ -8,7 +8,7 @@
   </div>
 
   <!-- Bloc des détails du cours -->
-  <div class="details-container" *ngIf="selectedCourse" [@slideInOut]="isSelectedCourseVisible ? 'in' : 'out'">
+  <div class="details-container" *ngIf="selectedCourse">
     <h3>Détails du cours</h3>
     <p><strong>Cours :</strong> {{ selectedCourse.course.name }}</p>
     <p><strong>Professeur :</strong> {{ selectedCourse.course.professor }}</p>
