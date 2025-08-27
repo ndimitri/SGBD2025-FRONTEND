@@ -8,13 +8,12 @@ import {TimeSlotUpdateForm} from '../../models/forms';
   providedIn: 'root'
 })
 export class ScheduledCourseService {
-  private apiUrl = 'http://localhost:8080/timeslots/'; // Remplace par ton URL backend
+  private apiUrl = 'http://localhost:8080/timeslots/';
 
   constructor(private http: HttpClient) {}
 
   getScheduleByGroup(groupId: string): Observable<TimeSlot[]> {
     return this.http.get<TimeSlot[]>(`${this.apiUrl}group/${groupId}`);
-    // return this.http.get<ScheduledCourse[]>(`${this.apiUrl}${'c2cf6b3f-3f69-431f-9c6e-7ae97f96b5f6'}`);
   }
 
   updateTimeSlot(slot: TimeSlotUpdateForm) {

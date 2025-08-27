@@ -12,13 +12,15 @@ import {MatButton} from '@angular/material/button';
 import { ScheduleAdminComponent } from './pages/schedule-admin/schedule-admin.component';
 import {FullCalendarModule} from "@fullcalendar/angular";
 import {MatList, MatListItem} from '@angular/material/list';
+import { GenerateScheduleComponent } from './pages/generate-schedule/generate-schedule.component';
 
 
 @NgModule({
   declarations: [
     DashboardComponent,
     CreateCourseComponent,
-    ScheduleAdminComponent
+    ScheduleAdminComponent,
+    GenerateScheduleComponent
   ],
   imports: [
     CommonModule,
