@@ -38,7 +38,9 @@ export class EditTimeSlotComponent {
 
   ngOnInit() {
     this.classroomService.getClassrooms().subscribe({
-      next: (res) => (this.classrooms = res),
+      next: (res) => {
+        this.classrooms = res.filter((c) => c.site?.university?.id === this.data.site.university?.id);
+      },
       error: (err) => console.error(err)
     });
 
